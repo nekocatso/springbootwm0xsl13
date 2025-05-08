@@ -16,23 +16,11 @@ import com.baidu.aip.bodyanalysis.AipBodyAnalysis;
 import com.baidu.aip.imageclassify.AipImageClassify;
 import com.baidu.aip.speech.AipSpeech;
 
-/**
-* 类说明 : 
-*/
-
 public class BaiduUtil {
 	
-    /**
-     * 根据经纬度获得省市区信息
-     * @param lon 纬度
-     * @param lat 经度
-     * @param coordtype 经纬度坐标系
-     * @return
-     */
     public static Map<String, String> getCityByLonLat(String key, String lng, String lat) {
         String location = lat + "," + lng;
         try {
-            //拼装url
             String url = "http://api.map.baidu.com/reverse_geocoding/v3/?ak="+key+"&output=json&coordtype=wgs84ll&location="+location;
             String result = HttpClientUtils.doGet(url);
             JSONObject o = new JSONObject(result);
@@ -48,45 +36,27 @@ public class BaiduUtil {
         return null;
     }
 
-    /**
-	     * 获取API访问token
-	     * 该token有一定的有效期，需要自行管理，当失效时需重新获取.
-	     * @param ak - 百度云官网获取的 API Key
-	     * @param sk - 百度云官网获取的 Securet Key
-	     * @return assess_token
-	     */
     public static String getAuth(String ak, String sk) {
-        // 获取token地址
         String authHost = "https://aip.baidubce.com/oauth/2.0/token?";
         String getAccessTokenUrl = authHost
-                // 1. grant_type为固定参数
                 + "grant_type=client_credentials"
-                // 2. 官网获取的 API Key
                 + "&client_id=" + ak
-                // 3. 官网获取的 Secret Key
                 + "&client_secret=" + sk;
         try {
             URL realUrl = new URL(getAccessTokenUrl);
-            // 打开和URL之间的连接
             HttpURLConnection connection = (HttpURLConnection) realUrl.openConnection();
             connection.setRequestMethod("GET");
             connection.connect();
-            // 获取所有响应头字段
             Map<String, List<String>> map = connection.getHeaderFields();
-            // 遍历所有的响应头字段
             for (String key : map.keySet()) {
                 System.err.println(key + "--->" + map.get(key));
             }
-            // 定义 BufferedReader输入流来读取URL的响应
             BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
             String result = "";
             String line;
             while ((line = in.readLine()) != null) {
                 result += line;
             }
-            /**
-             * 返回结果示例
-             */
             System.err.println("result:" + result);
             org.json.JSONObject jsonObject = new org.json.JSONObject(result);
             String access_token = jsonObject.getString("access_token");
@@ -98,24 +68,18 @@ public class BaiduUtil {
         return null;
     }
 
-    //设置APPID/AK/SK
     public static final String APP_ID = "49214550";
     public static final String API_KEY = "7Otjpv2kn0ljQk45qXOXh5MO";
     public static final String SECRET_KEY = "BMfbXRbTIVaB4C3SbRTtGqDv1wHDvyXS";
     private static AipOcr ocrClient = null;
 
-    /**
-     * 识别图片上的文本内容，转成文字字符串返回
-     * @param imagePath 图片文件的路径
-     */
     public static String generalString(String imagePath, boolean isNewline){
         try{
             HashMap<String, String> options = new HashMap<String, String>();
-            options.put("language_type", "CHN_ENG"); //CHN_ENG:中英文混合， ENG:英文
-            options.put("detect_direction", "true"); //是否检测图像朝向，默认不检测，即：false
-            options.put("detect_language", "true"); //是否检测语言，默认不检测。
-            options.put("probability", "false"); //是否返回识别结果中每一行的置信度
-            //通用文字识别
+            options.put("language_type", "CHN_ENG");
+            options.put("detect_direction", "true");
+            options.put("detect_language", "true");
+            options.put("probability", "false");
             if(ocrClient==null) {
                 ocrClient = new AipOcr(APP_ID, API_KEY, SECRET_KEY);
                 ocrClient.setConnectionTimeoutInMillis(5000);
@@ -129,7 +93,6 @@ public class BaiduUtil {
         }
         return null;
     }
-
 
     private static String mergeString(JSONObject jsonObject, boolean isNewline){
         if(jsonObject == null){
@@ -160,9 +123,7 @@ public class BaiduUtil {
     }
 
     public static JSONObject animalDetect(String imgPath) {
-        //初始化
         AipImageClassify aic = new AipImageClassify(APP_ID, API_KEY, SECRET_KEY);
-        //返回JSON格式的数据
         HashMap<String, String> params = new HashMap<String, String>();
         params.put("baike_num", "1");
         JSONObject res = aic.animalDetect(imgPath, params);
@@ -171,9 +132,7 @@ public class BaiduUtil {
     }
 
     public static JSONObject dishDetect(String imgPath) {
-        //初始化
         AipImageClassify aic = new AipImageClassify(APP_ID, API_KEY, SECRET_KEY);
-        //返回JSON格式的数据
         HashMap<String, String> params = new HashMap<String, String>();
         params.put("baike_num", "1");
         JSONObject res = aic.dishDetect(imgPath, params);
@@ -182,9 +141,7 @@ public class BaiduUtil {
     }
 
     public static JSONObject plantDetect(String imgPath) {
-        //初始化
         AipImageClassify aic = new AipImageClassify(APP_ID, API_KEY, SECRET_KEY);
-        //返回JSON格式的数据
         HashMap<String, String> params = new HashMap<String, String>();
         params.put("baike_num", "1");
         JSONObject res = aic.plantDetect(imgPath, params);
@@ -193,9 +150,7 @@ public class BaiduUtil {
     }
 
     public static JSONObject advancedGeneral(String imgPath) {
-        //初始化
         AipImageClassify aic = new AipImageClassify(APP_ID, API_KEY, SECRET_KEY);
-        //返回JSON格式的数据
         HashMap<String, String> params = new HashMap<String, String>();
         params.put("baike_num", "1");
         JSONObject res = aic.advancedGeneral(imgPath, params);
@@ -204,9 +159,7 @@ public class BaiduUtil {
     }
     
     public static JSONObject carDetect(String imgPath) {
-        //初始化
         AipImageClassify aic = new AipImageClassify(APP_ID, API_KEY, SECRET_KEY);
-        //返回JSON格式的数据
         HashMap<String, String> params = new HashMap<String, String>();
         params.put("baike_num", "1");
         JSONObject res = aic.carDetect(imgPath, params);
@@ -215,9 +168,7 @@ public class BaiduUtil {
     }
 
     public static JSONObject bodyNum(String imgPath) {
-        //初始化
         AipBodyAnalysis aba = new AipBodyAnalysis(APP_ID, API_KEY, SECRET_KEY);
-        //返回JSON格式的数据
         HashMap<String, String> params = new HashMap<String, String>();
         JSONObject res = aba.bodyNum(imgPath, params);
         System.out.println(res.toString(2));
@@ -225,9 +176,7 @@ public class BaiduUtil {
     }
 
     public static JSONObject asr(String wavPath) {
-        //初始化
         AipSpeech as = new AipSpeech(APP_ID, API_KEY, SECRET_KEY);
-        //返回JSON格式的数据
         HashMap<String, Object> params = new HashMap<String, Object>();
         params.put("channel", 1);
         JSONObject res = as.asr(wavPath, "pcm", 16000, params);

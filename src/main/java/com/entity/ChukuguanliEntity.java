@@ -24,9 +24,6 @@ import com.baomidou.mybatisplus.enums.IdType;
 /**
  * 出库管理
  * 数据库通用操作实体类（普通增删改查）
- * @author 
- * @email 
- * @date 2024-12-11 16:06:33
  */
 @TableName("chukuguanli")
 public class ChukuguanliEntity<T> implements Serializable {
@@ -41,7 +38,7 @@ public class ChukuguanliEntity<T> implements Serializable {
 		try {
 			BeanUtils.copyProperties(this, t);
 		} catch (IllegalAccessException | InvocationTargetException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		}
 	}

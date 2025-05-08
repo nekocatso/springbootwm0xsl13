@@ -39,13 +39,6 @@ import com.utils.MapUtils;
 import com.utils.CommonUtil;
 import java.io.IOException;
 
-/**
- * 入库管理
- * 后端接口
- * @author 
- * @email 
- * @date 2024-12-11 16:06:33
- */
 @RestController
 @RequestMapping("/rukuguanli")
 public class RukuguanliController {

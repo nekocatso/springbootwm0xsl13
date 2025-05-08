@@ -39,13 +39,6 @@ import com.utils.MapUtils;
 import com.utils.CommonUtil;
 import java.io.IOException;
 
-/**
- * 员工
- * 后端接口
- * @author 
- * @email 
- * @date 2024-12-11 16:06:33
- */
 @RestController
 @RequestMapping("/yuangong")
 public class YuangongController {

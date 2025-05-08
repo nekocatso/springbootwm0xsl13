@@ -106,7 +106,7 @@
 		    <version>6.2.0.jre8</version>
 		    <scope>runtime</scope>
 		</dependency> -->
-		<!-- 百度人工智能 -->
+ 
 		<dependency>
     		<groupId>com.baidu.aip</groupId>
     		<artifactId>java-sdk</artifactId>

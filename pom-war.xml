@@ -100,7 +100,7 @@
 			<artifactId>fastjson</artifactId>
 			<version>${fastjson.version}</version>
 		</dependency>
-		<!-- 百度人工智能 -->
+ 
 		<dependency>
     		<groupId>com.baidu.aip</groupId>
     		<artifactId>java-sdk</artifactId>
