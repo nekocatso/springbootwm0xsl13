@@ -23,18 +23,22 @@ import com.utils.EncryptUtil;
 public class HuowuxinxiView  extends HuowuxinxiEntity implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	public HuowuxinxiView(){
+	public HuowuxinxiView() {
 	}
- 
- 	public HuowuxinxiView(HuowuxinxiEntity huowuxinxiEntity){
- 	try {
+	
+	public HuowuxinxiView(HuowuxinxiEntity huowuxinxiEntity) {
+		try {
 			BeanUtils.copyProperties(this, huowuxinxiEntity);
 		} catch (IllegalAccessException | InvocationTargetException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
- 		
 	}
-
-
+	
+	public HuowuxinxiView(Object t) {
+		try {
+			BeanUtils.copyProperties(this, t);
+		} catch (IllegalAccessException | InvocationTargetException e) {
+			e.printStackTrace();
+		}
+	}
 }

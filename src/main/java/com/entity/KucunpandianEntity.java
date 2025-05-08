@@ -34,14 +34,12 @@ public class KucunpandianEntity<T> implements Serializable {
 
 
 	public KucunpandianEntity() {
-		
 	}
 	
 	public KucunpandianEntity(T t) {
 		try {
 			BeanUtils.copyProperties(this, t);
 		} catch (IllegalAccessException | InvocationTargetException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

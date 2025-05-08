@@ -23,18 +23,22 @@ import com.utils.EncryptUtil;
 public class CangkuxinxiView  extends CangkuxinxiEntity implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	public CangkuxinxiView(){
+	public CangkuxinxiView() {
 	}
- 
- 	public CangkuxinxiView(CangkuxinxiEntity cangkuxinxiEntity){
- 	try {
+	
+	public CangkuxinxiView(CangkuxinxiEntity cangkuxinxiEntity) {
+		try {
 			BeanUtils.copyProperties(this, cangkuxinxiEntity);
 		} catch (IllegalAccessException | InvocationTargetException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
- 		
 	}
-
-
+	
+	public CangkuxinxiView(Object t) {
+		try {
+			BeanUtils.copyProperties(this, t);
+		} catch (IllegalAccessException | InvocationTargetException e) {
+			e.printStackTrace();
+		}
+	}
 }

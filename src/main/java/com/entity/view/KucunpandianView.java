@@ -23,18 +23,14 @@ import com.utils.EncryptUtil;
 public class KucunpandianView  extends KucunpandianEntity implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	public KucunpandianView(){
+	public KucunpandianView() {
 	}
- 
- 	public KucunpandianView(KucunpandianEntity kucunpandianEntity){
- 	try {
+	
+	public KucunpandianView(KucunpandianEntity kucunpandianEntity) {
+		try {
 			BeanUtils.copyProperties(this, kucunpandianEntity);
 		} catch (IllegalAccessException | InvocationTargetException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
- 		
 	}
-
-
 }

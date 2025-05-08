@@ -56,7 +56,6 @@ public class EncryptUtil {
 			    stringBuilder.append(Integer.toHexString((b & 0xFF) | 0x100), 1, 3);
 			}
 		} catch (NoSuchAlgorithmException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
         return stringBuilder.toString();

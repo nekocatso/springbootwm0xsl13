@@ -23,18 +23,14 @@ import com.utils.EncryptUtil;
 public class ChukuguanliView  extends ChukuguanliEntity implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	public ChukuguanliView(){
+	public ChukuguanliView() {
 	}
- 
- 	public ChukuguanliView(ChukuguanliEntity chukuguanliEntity){
- 	try {
+	
+	public ChukuguanliView(ChukuguanliEntity chukuguanliEntity) {
+		try {
 			BeanUtils.copyProperties(this, chukuguanliEntity);
 		} catch (IllegalAccessException | InvocationTargetException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
- 		
 	}
-
-
 }

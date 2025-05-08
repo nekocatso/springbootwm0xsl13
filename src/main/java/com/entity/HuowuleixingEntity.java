@@ -34,14 +34,12 @@ public class HuowuleixingEntity<T> implements Serializable {
 
 
 	public HuowuleixingEntity() {
-		
 	}
 	
 	public HuowuleixingEntity(T t) {
 		try {
 			BeanUtils.copyProperties(this, t);
 		} catch (IllegalAccessException | InvocationTargetException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

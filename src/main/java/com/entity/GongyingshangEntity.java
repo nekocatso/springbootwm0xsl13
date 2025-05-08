@@ -34,14 +34,12 @@ public class GongyingshangEntity<T> implements Serializable {
 
 
 	public GongyingshangEntity() {
-		
 	}
 	
 	public GongyingshangEntity(T t) {
 		try {
 			BeanUtils.copyProperties(this, t);
 		} catch (IllegalAccessException | InvocationTargetException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

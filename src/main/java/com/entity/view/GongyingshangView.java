@@ -23,18 +23,22 @@ import com.utils.EncryptUtil;
 public class GongyingshangView  extends GongyingshangEntity implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	public GongyingshangView(){
+	public GongyingshangView() {
 	}
- 
- 	public GongyingshangView(GongyingshangEntity gongyingshangEntity){
- 	try {
+	
+	public GongyingshangView(GongyingshangEntity gongyingshangEntity) {
+		try {
 			BeanUtils.copyProperties(this, gongyingshangEntity);
 		} catch (IllegalAccessException | InvocationTargetException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
- 		
 	}
-
-
+	
+	public <T> GongyingshangView(T t) {
+		try {
+			BeanUtils.copyProperties(this, t);
+		} catch (IllegalAccessException | InvocationTargetException e) {
+			e.printStackTrace();
+		}
+	}
 }
